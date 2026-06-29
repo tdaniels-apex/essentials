@@ -3,11 +3,17 @@ import { NextResponse } from "next/server";
 /**
  * Contact form handler (Part 4).
  * Server-side validates, drops spam (honeypot + per-IP rate limit), and sends
- * the submission via Resend's REST API. Secrets come from env — never hardcode:
- *   RESEND_API_KEY, CONTACT_TO_EMAIL, CONTACT_FROM_EMAIL
+ * the submission via Resend's REST API. The destination + sender are public and
+ * identical across all three demo sites, so they're hardcoded below — only the
+ * secret RESEND_API_KEY comes from env (the one var Travis sets in Vercel).
  */
 
 export const runtime = "nodejs";
+
+// Subject prefix so we can tell which demo site converted (Pinnacle/Growth/Essentials).
+const SOURCE_TAG = "Essentials";
+const CONTACT_TO = "info@apex-aesthetics.co";
+const CONTACT_FROM = "Apex Demos <forms@mail.apex-aesthetics.co>";
 
 type Payload = {
   fullName?: string;
@@ -80,13 +86,9 @@ export async function POST(request: Request) {
   }
 
   const apiKey = process.env.RESEND_API_KEY;
-  const to = process.env.CONTACT_TO_EMAIL;
-  const from = process.env.CONTACT_FROM_EMAIL;
 
-  if (!apiKey || !to || !from) {
-    console.error(
-      "[contact] Missing email env: set RESEND_API_KEY, CONTACT_TO_EMAIL, CONTACT_FROM_EMAIL.",
-    );
+  if (!apiKey) {
+    console.error("[contact] Missing RESEND_API_KEY.");
     return NextResponse.json(
       { error: "Email is not configured yet. Please reach out directly." },
       { status: 500 },
@@ -111,10 +113,10 @@ export async function POST(request: Request) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        from,
-        to: [to],
+        from: CONTACT_FROM,
+        to: [CONTACT_TO],
         reply_to: email,
-        subject: `New application from ${fullName}`,
+        subject: `[${SOURCE_TAG}] New inquiry from ${fullName}`,
         html,
       }),
     });
