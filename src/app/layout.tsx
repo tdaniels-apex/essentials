@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   },
   description: site.description,
   alternates: { canonical: "/" },
-  icons: { icon: "/Icon-1-Red.png", apple: "/Icon-1-Red.png" },
+  icons: { icon: "/Icon-1---Black.png", apple: "/Icon-1---Black.png" },
   // Demo clones live content — keep it out of search to avoid duplicate-content
   // competition with apex-aesthetics.co. (Part 5 default; Travis can flip this.)
   robots: { index: false, follow: false },
