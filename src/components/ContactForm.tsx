@@ -7,11 +7,10 @@ import { contact } from "@/lib/content";
 type Status = "idle" | "submitting" | "success" | "error";
 
 const BUDGET_OPTIONS = [
-  "Under $2,000",
-  "$2,000 – $5,000",
-  "$5,000 – $10,000",
-  "$10,000+",
-  "Not sure yet",
+  "Less than $3,500",
+  "$3,500 – $5,000",
+  "$5,000 – $8,000",
+  "$8,000+",
 ];
 
 const EMPTY = {
