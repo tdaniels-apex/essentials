@@ -40,6 +40,7 @@ export function ContactForm() {
     if (!values.fullName.trim()) next.fullName = "Please enter your name.";
     if (!values.email.trim()) next.email = "Please enter your email.";
     else if (!emailRe.test(values.email)) next.email = "Enter a valid email address.";
+    if (!values.budget) next.budget = "Please select a budget range.";
     if (!values.message.trim()) next.message = "Tell us a little about your project.";
     setErrors(next);
     return Object.keys(next).length === 0;
@@ -119,13 +120,14 @@ export function ContactForm() {
           />
         </Field>
 
-        <Field label="Budget" htmlFor="budget">
+        <Field label="Budget" htmlFor="budget" error={errors.budget} required>
           <select
             id="budget"
             name="budget"
             value={values.budget}
             onChange={(e) => update("budget", e.target.value)}
-            className={inputCls(false)}
+            aria-invalid={!!errors.budget}
+            className={inputCls(!!errors.budget)}
           >
             <option value="">Select a range…</option>
             {BUDGET_OPTIONS.map((opt) => (

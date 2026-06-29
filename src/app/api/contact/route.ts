@@ -78,7 +78,7 @@ export async function POST(request: Request) {
   const company = body.company?.trim() ?? "";
   const budget = body.budget?.trim() ?? "";
 
-  if (!fullName || !email || !message || !emailRe.test(email)) {
+  if (!fullName || !email || !budget || !message || !emailRe.test(email)) {
     return NextResponse.json(
       { error: "Please complete the required fields with a valid email." },
       { status: 400 },
