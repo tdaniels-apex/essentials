@@ -1,0 +1,103 @@
+@import "tailwindcss";
+
+/*
+ * Apex Essentials-tier demo — design tokens.
+ * A clean, conventional, structured small-business site (Part 2 of the brief).
+ * Built fresh — shares only brand tokens with the Growth demo (logo, red, fonts).
+ * Visual interest comes from layout / whitespace / structure, NOT color or motion.
+ *
+ * Brand red sampled from the live site is #E50914 — deepened to #C20A14 here so
+ * it stays legible (AA) on white. (Travis confirms the exact hex.)
+ */
+
+@theme {
+  /* Brand accent — used sparingly (buttons, links, a thin rule) */
+  --color-apex-red: #c20a14;
+  --color-apex-red-dark: #9a0810; /* hover / pressed */
+  --color-apex-red-bright: #e50914; /* brighter red for legibility on dark chrome */
+
+  /* Dark brand chrome — header, footer, and page heroes */
+  --color-apex-night: #0e0e0e;
+
+  /* Surfaces & neutrals — white base, ONE light-gray band for rhythm */
+  --color-background: #ffffff;
+  --color-foreground: #1a1a1a; /* charcoal body text */
+  --color-band: #f5f5f4; /* the single alternating section band */
+  --color-line: #e7e7e4; /* hairline borders */
+  --color-line-strong: #d6d6d2;
+  --color-muted: #525252; /* neutral-600 — AA on white */
+  --color-muted-foreground: #6b6b6b; /* small meta text — AA on white */
+
+  /* Typography.
+     Hanken Grotesk does almost all the work (headings + body). The Orbitron-style
+     display font is reserved for the logo / wordmark ONLY, so this reads calmer
+     and simpler than Growth's big display-type drama. */
+  --font-sans: var(--font-hanken), ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-hanken), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-orbitron), ui-sans-serif, system-ui, sans-serif;
+
+  /* Layout rhythm */
+  --radius-card: 0.625rem;
+}
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Reserved for the logo wordmark only — not for page headings. */
+.font-wordmark {
+  font-family: var(--font-display);
+  letter-spacing: -0.01em;
+}
+
+/* Visible, on-brand focus ring for keyboard users (a11y, Part 6). */
+:focus-visible {
+  outline: 2px solid var(--color-apex-red);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ------------------------------- Motion ---------------------------------- */
+/* Minimal: a single gentle fade/slide-in on scroll. No marquee, count-up,
+   parallax, or WebGL (banned by the brief). */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 0.6s ease-out,
+    transform 0.6s ease-out;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
