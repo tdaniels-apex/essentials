@@ -11,7 +11,7 @@ Full build spec: [`docs/essentials-demo-task.md`](docs/essentials-demo-task.md).
 
 - **Next.js 16** (App Router) + **TypeScript** + **Tailwind v4**
 - **Resend** for the working contact form (`app/api/contact/route.ts`)
-- Fonts: **Orbitron** (display, light-touch) + **Hanken Grotesk** (body) via `next/font`
+- Fonts: **Michroma** (heading + wordmark, single-weight 400) + **Figtree** (body) via `next/font`
 - Deploy target: **`essentials.apex-aesthetics.co`** (Vercel)
 
 ## Getting started

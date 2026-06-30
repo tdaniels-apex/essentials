@@ -1,22 +1,24 @@
 import type { Metadata } from "next";
-import { Orbitron, Hanken_Grotesk } from "next/font/google";
+import { Michroma, Figtree } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Analytics } from "@/components/Analytics";
 import { site } from "@/lib/site";
 
-// Hanken Grotesk carries the whole site (headings + body). Orbitron is loaded only
-// to render the Apex wordmark — never used for page headings (keeps it calm/simple).
-const hanken = Hanken_Grotesk({
+// Apex brand system: Michroma (heading + wordmark) + Figtree (body), self-hosted by
+// next/font. Michroma ships at weight 400 ONLY (non-variable) — heading hierarchy comes
+// from size / letter-spacing / color, never weight. Figtree is variable (300–900).
+const figtree = Figtree({
   subsets: ["latin"],
-  variable: "--font-hanken",
+  variable: "--font-figtree",
   display: "swap",
 });
 
-const orbitron = Orbitron({
+const michroma = Michroma({
+  weight: "400",
   subsets: ["latin"],
-  variable: "--font-orbitron",
+  variable: "--font-michroma",
   display: "swap",
 });
 
@@ -54,7 +56,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${hanken.variable} ${orbitron.variable} h-full antialiased`}
+      className={`${figtree.variable} ${michroma.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col bg-background text-foreground">
         <Header />

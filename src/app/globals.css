@@ -29,12 +29,12 @@
   --color-muted-foreground: #6b6b6b; /* small meta text — AA on white */
 
   /* Typography.
-     Hanken Grotesk does almost all the work (headings + body). The Orbitron-style
-     display font is reserved for the logo / wordmark ONLY, so this reads calmer
-     and simpler than Growth's big display-type drama. */
-  --font-sans: var(--font-hanken), ui-sans-serif, system-ui, sans-serif;
-  --font-body: var(--font-hanken), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-orbitron), ui-sans-serif, system-ui, sans-serif;
+     Heading → Michroma (single-weight 400), body → Figtree (variable). Michroma
+     also renders the logo wordmark. Heading hierarchy comes from size / spacing /
+     color, never weight (Michroma has no bold). */
+  --font-sans: var(--font-figtree), system-ui, sans-serif;
+  --font-body: var(--font-figtree), system-ui, sans-serif;
+  --font-display: var(--font-michroma), sans-serif;
 
   /* Layout rhythm */
   --radius-card: 0.625rem;
@@ -56,7 +56,16 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* Reserved for the logo wordmark only — not for page headings. */
+/* Headings → Michroma (single-weight 400). Force 400 + font-synthesis:none so the
+   Tailwind font-bold utilities on headings can't synthesize faux-bold; hierarchy
+   comes from size / letter-spacing / color. */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 400 !important;
+  font-synthesis: none;
+}
+
+/* Logo wordmark → Michroma (same display family). */
 .font-wordmark {
   font-family: var(--font-display);
   letter-spacing: -0.01em;

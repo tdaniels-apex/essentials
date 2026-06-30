@@ -22,8 +22,9 @@ conventional — NOT sparse, blank, or text-on-white. Simple ≠ empty.
 - **Design = clean, conventional, structured.** White base, contained ~1180px
   column (not full-bleed), hairline borders, soft-shadow cards, one light-gray
   band for rhythm. Interest comes from layout/whitespace, not color or motion.
-- **Type:** Hanken Grotesk does everything (headings + body), restrained scale.
-  Orbitron is reserved for the **logo wordmark only** — never page headings.
+- **Type:** Michroma (headings + logo wordmark) + Figtree (body). Michroma is
+  single-weight 400 — heading hierarchy comes from size / letter-spacing / color,
+  never weight (no bold). Keep the scale restrained.
 - **Motion:** minimal fade-in on scroll only; `prefers-reduced-motion` respected.
 - Still the **Apex brand** with **real copy** from the live site, then **softened**
   (calmer, shorter, no hype). Reword, don't invent.
