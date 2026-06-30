@@ -84,6 +84,7 @@ export default function HomePage() {
             label="What we do"
             title="Design that helps your business grow"
             lead="Four core services that work together to make your business look established and convert better."
+            className="max-w-3xl"
           />
         </Reveal>
         <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2">
